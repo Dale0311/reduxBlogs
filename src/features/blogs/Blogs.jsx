@@ -1,13 +1,14 @@
 import { useSelector } from "react-redux";
 import { selectAllBlogs } from "./blogsSlice";
-import Blog from "./Blog";
+import BlogCard from "./BlogCard";
 import CreateBlog from "./CreateBlog";
 function Blogs() {
   const blogs = useSelector(selectAllBlogs);
   const toRenderBlogs = blogs.map((blog) => {
     return (
-      <Blog
+      <BlogCard
         key={blog.id}
+        id={blog.id}
         title={blog.title}
         body={blog.body}
         author={blog.author}
@@ -16,7 +17,7 @@ function Blogs() {
     );
   });
   return (
-    <div className="flex flex-col space-y-2">
+    <div className="flex flex-col space-y-2 w-1/2 mx-auto">
       <div className="self-end">
         <CreateBlog />
       </div>

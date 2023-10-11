@@ -3,7 +3,7 @@ import { createSlice, nanoid } from "@reduxjs/toolkit";
 const initialState = {
   blogs: [
     {
-      id: nanoid(),
+      id: "gRePQj7hAIvhUH6_Dsoe0",
       title: "how to center a div in js",
       body: "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Inventore, sequi?",
       author: "Dale Cabarle",
@@ -27,17 +27,26 @@ const blogsSlice = createSlice({
     },
     // id
     deleteBlog: (state, action) => {
-      state.blogs.filter((blog) => blog.id !== action.payload);
-    },
-    // autor, body,
-    editBlog: (state, action) => {
-      state.blogs.map((blog) =>
-        blog.id === action.payload.id ? { ...action.updatedBlog } : blog
+      const toDelete = state.blogs.findIndex(
+        (blog) => blog.id === action.payload
       );
+      if (toDelete !== -1) {
+        state.blogs.splice(toDelete, 1);
+      }
+    },
+    // author, body, title, id
+    editBlog: (state, action) => {
+      const { title, body, author, id } = action.payload;
+      const toUpdate = state.blogs.find((blog) => blog.id == id);
+      if (toUpdate) {
+        toUpdate.title = title;
+        toUpdate.body = body;
+        toUpdate.author = author;
+      }
     },
     addLike: (state, action) => {
       state.blogs.map((blog) =>
-        blog.id === action.payload.id ? { ...blog, likes: blog.likes++ } : blog
+        blog.id === action.payload ? { ...blog, likes: blog.likes++ } : blog
       );
     },
   },

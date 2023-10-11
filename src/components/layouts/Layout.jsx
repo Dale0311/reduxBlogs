@@ -9,7 +9,7 @@ function Layout() {
           </Link>
           <nav>
             <ul className="space-x-4 text-lg">
-              <NavLink to={"home"}>Home</NavLink>
+              <NavLink to={"."}>Home</NavLink>
               <NavLink to={"blogs"}>Blogs</NavLink>
             </ul>
           </nav>
