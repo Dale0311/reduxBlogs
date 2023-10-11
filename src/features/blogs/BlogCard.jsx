@@ -1,11 +1,11 @@
 import { AiOutlineLike } from "react-icons/ai";
 import { useDispatch } from "react-redux";
-import { addLike } from "./blogsSlice";
+import { addLike, addOneLike } from "./blogsSlice";
 import { Link } from "react-router-dom";
-function BlogCard({ title, likes, author, id }) {
+function BlogCard({ title, likes, author, id, blog }) {
   const dispatch = useDispatch();
   function handleAddLike() {
-    dispatch(addLike(id));
+    dispatch(addOneLike({ ...blog, likes: likes + 1 }));
   }
   return (
     <div className="p-4 space-y-2 border border-gray-700 rounded">

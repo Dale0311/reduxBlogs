@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { useDispatch } from "react-redux";
-import { addBlog } from "./blogsSlice";
+import { addBlog, addOneBlog } from "./blogsSlice";
 
 function CreateBlog() {
   const dispatch = useDispatch();
@@ -12,7 +12,7 @@ function CreateBlog() {
   }
   function handleSubmit(e) {
     e.preventDefault();
-    dispatch(addBlog(newBlog));
+    dispatch(addOneBlog({ ...newBlog, likes: 0 }));
     setNewBlog({ title: "", body: "", author: "" });
     setShowModal(false);
   }

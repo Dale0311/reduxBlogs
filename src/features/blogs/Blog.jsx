@@ -2,7 +2,13 @@ import React, { useState } from "react";
 import { AiOutlineLike } from "react-icons/ai";
 import { useSelector, useDispatch } from "react-redux";
 import { useParams, useNavigate } from "react-router-dom";
-import { addLike, editBlog, deleteBlog } from "./blogsSlice";
+import {
+  addLike,
+  editBlog,
+  deleteBlog,
+  deleteOneBlog,
+  updateOneBlog,
+} from "./blogsSlice";
 
 function Blog() {
   // hooks
@@ -36,13 +42,15 @@ function Blog() {
 
   function handleSubmit(e) {
     e.preventDefault();
-    dispatch(editBlog({ id: id, ...editedBlog }));
+    dispatch(
+      updateOneBlog({ id: blog.id, likes: blog.likes, ...editedBlog })
+    );
     setIsEditable(false);
   }
 
   function handleDelete(e) {
     e.preventDefault();
-    dispatch(deleteBlog(id));
+    dispatch(deleteOneBlog(id));
     navigate("/blogs");
   }
 
